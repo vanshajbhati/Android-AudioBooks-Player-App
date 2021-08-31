@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soup.neumorphism.NeumorphCardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chapter_cardView_id"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_margin="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+>
+
+
+        <TextView
+            android:id="@+id/chapter_duration_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="12dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text"
+            android:textSize="15dp"
+            android:text="24 min" />
+
+        <TextView
+                android:id="@+id/chapter_number_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/_5ssp"
+                android:text="Chapter 1 -"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/chapter_name_textview"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="@dimen/_5ssp"
+                android:text="The place never visit eajfskjafd"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:paddingRight="2dp"/>
+
+
+        <soup.neumorphism.NeumorphImageView
+            android:id="@+id/chapter_play_Button_View"
+            android:layout_width="@dimen/_54sdp"
+            android:layout_height="@dimen/_54sdp"
+            android:padding="@dimen/_16sdp"
+            android:src="@android:drawable/ic_media_play"
+            android:layout_alignParentRight="true"
+            app:neumorph_shadowColorDark="@color/dark_shadow"
+            app:neumorph_shadowColorLight="@color/light_shadow"
+            app:neumorph_shapeAppearance="@style/NeumorphismImageNormal"
+           />
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+</soup.neumorphism.NeumorphCardView>

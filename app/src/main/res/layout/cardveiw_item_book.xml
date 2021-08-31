@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soup.neumorphism.NeumorphCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:id="@+id/cardView_id"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_width="@dimen/_105sdp"
+    android:layout_height="wrap_content"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    cardview:neumorph_backgroundColor="@color/neumorphism_background"
+    cardview:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+    cardview:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+    cardview:neumorph_shapeAppearance="@style/NeumorphismCardImageRecyclerViewActivity"
+    cardview:neumorph_shapeType="pressed">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/book_img_id"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:scaleType="centerCrop"
+        android:background="#2d2d2d"/>
+    <TextView
+        android:id="@+id/book_title_id"
+        android:textColor="@color/white"
+        android:paddingLeft="4dp"
+        android:gravity="left"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Book Title"/>
+
+        <soup.neumorphism.NeumorphTextView
+            android:id="@+id/book_author_id"
+            android:paddingLeft="4dp"
+            android:gravity="left"
+            android:textSize="13sp"
+            android:textStyle="italic"
+            android:textColor="@color/primary_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Book author"
+            cardview:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+            cardview:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+
+            />
+</LinearLayout>
+
+</soup.neumorphism.NeumorphCardView>

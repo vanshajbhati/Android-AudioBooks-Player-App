@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    //custom colors
+    <color name="primary">#A3B5BF</color>
+    <color name="background">#EBEBEB</color>
+   <color name="primary_text">#676767</color>
+    <color name="secondary_text">#212121</color>
+    <color name="dark_shadow">#C5C5C5</color>
+    <color name="light_shadow">#FFFFFF</color>
+    <color name="blue_primary">#2196F3</color>
+    <color name="light_blue_primary">#03A9F4</color>
+
+
+    //color theme
+
+    <color name="main_alternate_color">#444941</color>
+    <color name="primary_dark_color">#50CB93</color>
+    <color name="primary_mid_shade_color">#71EFA3</color>
+    <color name="primary_light_color">#ACFFAD</color>
+
+
+    //Neumorphism colors
+    <color name="neumorphism_background">@color/primary_mid_shade_color</color>
+    <color name="neumorphism_dark_shadow">@color/primary_dark_color</color>
+    <color name="neumorphism_light_shadow">@color/primary_light_color</color>
+
+    new main colors
+    <color name="button_color_home_page">@color/primary_text</color>
+    <color name="play_button_color_home_page">@color/primary_text</color>
+    <color name="music_bar_background_color">@color/neumorphism_background</color>
+    <color name="cardView_color">@color/primary_mid_shade_color</color>
+    <color name="top_menuBar_recyclerview_activity">@color/primary_mid_shade_color</color>
+    <color name="background_recyclerview_activity">@color/primary_mid_shade_color</color>
+
+
+
+</resources>

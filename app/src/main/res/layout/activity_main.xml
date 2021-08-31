@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout_mediaPlayer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neumorphism_background"
+    app:layoutDescription="@xml/activity_main_scene"
+    tools:context=".MediaPlayer_Activity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineExtremeOutLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="-0.96" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineExtremeBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1.86" />
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineOut1v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="-0.04" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineOut2v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.61" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.73" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.86" />
+
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.62" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.81" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88" />
+
+
+    <soup.neumorphism.NeumorphImageView
+        android:id="@+id/playButtonView"
+        android:layout_width="@dimen/_64sdp"
+        android:layout_height="@dimen/_64sdp"
+        android:padding="@dimen/_16sdp"
+        android:src="@android:drawable/ic_media_play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="@id/guideline5"
+        app:layout_constraintVertical_bias="0.899"
+        app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+        app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+        app:neumorph_shapeAppearance="@style/NeumorphismImageSmall"
+        app:tint="@color/play_button_color_home_page" />
+
+    <soup.neumorphism.NeumorphImageView
+        android:id="@+id/nextButtonView"
+        android:layout_width="@dimen/_44sdp"
+        android:layout_height="@dimen/_44sdp"
+        android:padding="@dimen/_16sdp"
+        android:src="@android:drawable/ic_media_next"
+        android:tint="@color/button_color_home_page"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toEndOf="@+id/forwardButtonView"
+        app:layout_constraintTop_toTopOf="@+id/playButtonView"
+        app:layout_constraintVertical_bias="0.135"
+        app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+        app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+        app:neumorph_shapeAppearance="@style/NeumorphismImageSmall" />
+
+
+    <soup.neumorphism.NeumorphImageView
+
+        android:id="@+id/forwardButtonView"
+        android:layout_width="@dimen/_54sdp"
+        android:layout_height="@dimen/_54sdp"
+        android:padding="@dimen/_8sdp"
+        android:src="@drawable/secforward"
+        android:tint="@color/button_color_home_page"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toEndOf="@+id/playButtonView"
+        app:layout_constraintTop_toTopOf="@+id/playButtonView"
+        app:layout_constraintVertical_bias="0.135"
+        app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+        app:neumorph_shadowColorLight="@color/neumorphism_light_shadow" />
+
+
+
+    <soup.neumorphism.NeumorphImageView
+        android:id="@+id/previousButtonView"
+        android:layout_width="@dimen/_44sdp"
+        android:layout_height="@dimen/_44sdp"
+        android:padding="@dimen/_16sdp"
+        android:src="@android:drawable/ic_media_previous"
+        android:tint="@color/button_color_home_page"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rewindButtonView"
+
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/playButtonView"
+        app:layout_constraintVertical_bias="0.135"
+        app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+        app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+        app:neumorph_shapeAppearance="@style/NeumorphismImageSmall" />
+
+    <soup.neumorphism.NeumorphImageView
+        android:id="@+id/back_Button"
+        android:layout_width="@dimen/_44sdp"
+        android:layout_height="@dimen/_44sdp"
+        android:padding="@dimen/_16sdp"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24"
+        android:tint="@color/button_color_home_page"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.135"
+        android:onClick="onBackButtonPressed"
+        app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+        app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+        app:neumorph_shapeAppearance="@style/NeumorphismImageSmall" />
+
+    <soup.neumorphism.NeumorphImageView
+
+        android:id="@+id/rewindButtonView"
+        android:layout_width="@dimen/_54sdp"
+        android:layout_height="@dimen/_54sdp"
+
+        android:padding="@dimen/_8sdp"
+        android:src="@drawable/secbackward"
+        android:tint="@color/button_color_home_page"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/playButtonView"
+        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/playButtonView"
+        app:layout_constraintVertical_bias="0.135"
+        app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+        app:neumorph_shadowColorLight="@color/neumorphism_light_shadow" />
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/cardSeekBar"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AuthorTextView"
+        app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+        app:neumorph_shadowColorLight="@color/neumorphism_light_shadow">
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_6sdp"
+            android:layout_margin="@dimen/_2sdp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:progress="90"
+            android:progressDrawable="@drawable/progress_background"
+            android:splitTrack="false"
+
+            android:thumbTint="#C5D0D6"
+            app:layout_constraintBottom_toTopOf="@+id/playButtonView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleSongs"
+            app:layout_constraintVertical_bias="0.78" />
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+    <TextView
+        android:id="@+id/titleSongs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:text="TitleOF the bokk experi hment nu"
+        android:textAlignment="center"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_22sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/AuthorTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline3" />
+
+    <TextView
+        android:id="@+id/AuthorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Author"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/_15sdp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleSongs"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <TextView
+        android:id="@+id/textLiveTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="00:00"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cardSeekBar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textTotalDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="00:00"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cardSeekBar"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView"
+        android:layout_width="@dimen/_230sdp"
+
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline1"
+        app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+        app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/songImageMAINURL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+    </soup.neumorphism.NeumorphCardView>
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

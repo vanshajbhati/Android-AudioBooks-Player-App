@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="600">
+       <KeyFrameSet>
+           <KeyAttribute
+               motion:motionTarget="@+id/musicBar_title_textview"
+               motion:framePosition="50"
+               android:alpha="1" />
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/neumorphImageView"
+            motion:layout_constraintEnd_toEndOf="@id/guidelineOut3v"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintTop_toTopOf="@id/guidelineOut1H"
+            motion:layout_constraintBottom_toBottomOf="@id/guidelineOut2H"
+            motion:layout_constraintStart_toStartOf="@id/guidelineOut1v" />
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintGuide_percent="1.0"
+            android:layout_width="wrap_content"
+            android:id="@+id/guidelineOut2v" />
+        <Constraint
+            android:layout_height="0dp"
+            android:layout_width="@dimen/_230sdp"
+            android:id="@+id/neumorphCardView3"
+            motion:layout_constraintBottom_toBottomOf="@id/guidelineT2"
+            motion:layout_constraintTop_toTopOf="@id/guidelineT1"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@+id/constraintLayout" />
+        <Constraint
+            android:id="@+id/musicBar_title_textview"
+            android:layout_width="3dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/guidelineOut2H"
+            android:layout_marginBottom="0dp"
+            motion:layout_constraintStart_toStartOf="@id/guideline2v" />
+        <Constraint
+            android:id="@+id/musicBar_Author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/guidelineOut2H"
+            motion:layout_constraintStart_toStartOf="@id/guideline2v" />
+
+        <Constraint
+            android:id="@+id/musicBar_button_playPause"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/guideline7"
+            motion:layout_constraintVertical_bias="0.93"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent" />
+
+        <Constraint
+            android:id="@+id/musicBar_button_forward"
+            android:layout_width="@dimen/_54sdp"
+            android:layout_height="@dimen/_54sdp"
+
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toEndOf="@+id/musicBar_button_playPause"
+            motion:layout_constraintHorizontal_bias="0.148"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="@+id/musicBar_button_playPause"
+            motion:layout_constraintVertical_bias="0.135" />
+
+        <Constraint
+            android:id="@+id/musicBar_button_rewind"
+            android:layout_width="@dimen/_54sdp"
+            android:layout_height="@dimen/_54sdp"
+
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toStartOf="@+id/musicBar_button_playPause"
+            motion:layout_constraintHorizontal_bias="0.872"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="@+id/musicBar_button_playPause"
+            motion:layout_constraintVertical_bias="0.135"
+
+
+          />
+
+
+    </ConstraintSet>
+</MotionScene>
