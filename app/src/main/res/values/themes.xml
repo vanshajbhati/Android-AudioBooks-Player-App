@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.FinalMusicApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.FinalMusicApp" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_light_color</item>
         <item name="colorPrimaryVariant">@color/primary_mid_shade_color</item>
@@ -10,11 +10,23 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+
+//TODO
+
+
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/blackground_splash</item>
+    </style>
+
+
+
+
 
     <!---custom style-->
     <style name="FullScreen" parent="Theme.FinalMusicApp">
@@ -53,5 +65,11 @@
         <item name="neumorph_cornerFamily">rounded</item>
         <item name="neumorph_cornerSize">@dimen/_8sdp</item>
     </style>
+
+    <style name="NeumorphismSquare">
+        <item name="neumorph_cornerFamily">rounded</item>
+        <item name="neumorph_cornerSize">@dimen/_1ssp</item>
+    </style>
+
 
 </resources>

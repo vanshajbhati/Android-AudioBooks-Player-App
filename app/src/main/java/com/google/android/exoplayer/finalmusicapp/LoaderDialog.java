@@ -28,11 +28,13 @@ public class LoaderDialog extends AppCompatActivity  {
 
 
 
-    void startLoaderDialog(){
+    void startLoaderDialog(Activity myActivity){
 
-        View view = getLayoutInflater().inflate(R.layout.custom_loader, null);
-        dialog = new Dialog(this, android.R.style.Theme_DeviceDefault_Dialog_NoActionBar);
-       dialog.setContentView(view);
+
+
+        dialog = new Dialog(myActivity);
+       dialog.setContentView(R.layout.custom_loader);
+       dialog.setCancelable(true);
        dialog.show();
 
     }

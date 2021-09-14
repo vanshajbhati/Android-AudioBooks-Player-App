@@ -90,14 +90,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.55" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.62" />
+       app:layout_constraintGuide_percent="0.54" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -129,7 +129,10 @@
         app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
         app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
         app:neumorph_shapeAppearance="@style/NeumorphismImageSmall"
-        app:tint="@color/play_button_color_home_page" />
+        app:tint="@color/play_button_color_home_page" >
+
+
+    </soup.neumorphism.NeumorphImageView>
 
     <soup.neumorphism.NeumorphImageView
         android:id="@+id/nextButtonView"
@@ -253,6 +256,51 @@
 
     </soup.neumorphism.NeumorphCardView>
 
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/speedCardViewCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:onClick="speedboxOnPressed"
+        android:background="@color/neumorphism_background"
+        app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+        app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline3">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+        <TextView
+            android:padding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speed :"
+            android:textAlignment="center"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/oneXSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1X"
+            android:textAlignment="center"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+    </soup.neumorphism.NeumorphCardView>
+
     <TextView
         android:id="@+id/titleSongs"
         android:layout_width="wrap_content"
@@ -266,7 +314,7 @@
         app:layout_constraintBottom_toTopOf="@id/AuthorTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline3" />
+        app:layout_constraintTop_toBottomOf="@+id/speedCardViewCenter" />
 
     <TextView
         android:id="@+id/AuthorTextView"
@@ -276,12 +324,14 @@
         android:text="Author"
         android:textColor="@color/primary"
         android:textSize="@dimen/_15sdp"
+        android:layout_marginBottom="12dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleSongs"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintBottom_toTopOf="@id/cardSeekBar"
+        />
 
     <TextView
         android:id="@+id/textLiveTime"
@@ -329,6 +379,8 @@
                 android:scaleType="centerCrop" />
         </LinearLayout>
     </soup.neumorphism.NeumorphCardView>
+
+
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

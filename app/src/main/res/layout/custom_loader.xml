@@ -1,67 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/speedSet_Dialog_Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_round_progressbar"
     android:gravity="center"
-
+    app:layoutDescription="@xml/custom_loader_scene"
     >
-
-  <ImageView
-      android:id="@+id/imageView3"
-      android:layout_width="500dp"
-      android:layout_height="800dp"
-      android:scaleType="centerCrop"
-      android:src="@drawable/audiobook_icon_background"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.73"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.978" />
-
-
-  <LinearLayout
-      android:id="@+id/linearLayout"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:gravity="center"
-      android:orientation="vertical"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent">
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/audiobook_icon_foreground" />
-
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="AudioForest"
-        android:textColor="@color/white"
-        android:textSize="50dp"
-        android:textStyle="bold" />
-  </LinearLayout>
+        android:orientation="vertical"
+        android:gravity="center">
 
-  <TextView
-      android:id="@+id/textView2"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:padding="10dp"
-      android:text="The Forest of AudioBooks"
-      android:textColor="@color/white"
-      android:textSize="20dp"
-      android:textStyle="italic"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/zeroTwoZeroX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="13dp"
+                android:onClick="zeroTwoXPressed"
+                android:background="@color/neumorphism_background"
+                app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                >
+
+            <soup.neumorphism.NeumorphTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.20"
+                android:textColor="@color/primary_text"
+                app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                />
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/zeroFourZeroX"
+                android:onClick="zeroFortyXPressed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="13dp"
+                android:background="@color/neumorphism_background"
+                app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                >
+
+                <soup.neumorphism.NeumorphTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.40"
+                    android:textColor="@color/primary_text"
+                    app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                    app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                    />
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/zeroSixZeroX"
+                android:onClick="zeroSixtyXPressed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="13dp"
+                android:background="@color/neumorphism_background"
+                app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                >
+
+                <soup.neumorphism.NeumorphTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.60"
+                    android:textColor="@color/primary_text"
+                    app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                    app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                    />
+            </soup.neumorphism.NeumorphCardView>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/zeroEightZeroX"
+                android:onClick="zeroEightyXPressed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="13dp"
+                android:background="@color/neumorphism_background"
+                app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                >
+
+                <soup.neumorphism.NeumorphTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.80"
+                    android:textColor="@color/primary_text"
+                    app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                    app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                    />
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/oneX"
+                android:onClick="oneXPressed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="13dp"
+                android:background="@color/neumorphism_background"
+                app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                >
+
+                <soup.neumorphism.NeumorphTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.00"
+                    android:onClick="oneXPressed"
+                    android:textColor="@color/primary_text"
+                    app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                    app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                    />
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/oneTwoFiveX"
+                android:onClick="onetwofiveXPressed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="13dp"
+                android:background="@color/neumorphism_background"
+                app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                >
+
+                <soup.neumorphism.NeumorphTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.25"
+                    android:textColor="@color/primary_text"
+                    app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                    app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                    />
+            </soup.neumorphism.NeumorphCardView>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/oneFiveZeroX"
+                android:onClick="onefiftyXPressed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="13dp"
+                android:background="@color/neumorphism_background"
+                app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                >
+
+                <soup.neumorphism.NeumorphTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.50"
+                    android:textColor="@color/primary_text"
+                    app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                    app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                    />
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:onClick="oneSevenFiveXPressed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="13dp"
+                android:background="@color/neumorphism_background"
+                app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                >
+
+                <soup.neumorphism.NeumorphTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.75"
+                    android:textColor="@color/primary_text"
+                    app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                    app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                    />
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:onClick="twoXPressed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="13dp"
+                android:background="@color/neumorphism_background"
+                app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                >
+
+                <soup.neumorphism.NeumorphTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.00"
+                    android:textColor="@color/primary_text"
+                    app:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+                    app:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+                    />
+            </soup.neumorphism.NeumorphCardView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</RelativeLayout>

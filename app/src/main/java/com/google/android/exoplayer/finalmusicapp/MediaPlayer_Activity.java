@@ -1,13 +1,17 @@
 package com.google.android.exoplayer.finalmusicapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.app.NotificationCompat;
+import androidx.core.widget.ContentLoadingProgressBar;
 
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -16,6 +20,7 @@ import android.graphics.BitmapFactory;
 
 import android.graphics.drawable.Drawable;
 import android.media.session.MediaSession;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,15 +31,21 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.flurry.android.FlurryAgent;
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -59,9 +70,10 @@ import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION
 import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.CHANNEL_ID_2;
 import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_CONTINUE;
 import static com.google.android.exoplayer.finalmusicapp.MainRecyclerviewActivity.motionLayout;
+import static com.google.android.exoplayer.finalmusicapp.MainRecyclerviewActivity.prevPosition;
 
 public class MediaPlayer_Activity extends AppCompatActivity
-        implements ActionPlaying, ServiceConnection {
+        implements ActionPlaying, ServiceConnection , Player.EventListener{
 
 
 
@@ -78,7 +90,7 @@ public class MediaPlayer_Activity extends AppCompatActivity
     public static SharedPreferences sharedPreferences;
     public static SharedPreferences.Editor editor;
     private static final String SHARED_PREFS = "SharedPrefs";
-    public static final int numberOfFiles = 10000;
+
 
     public static int songPrevPosition;
     public static String currentTitle;
@@ -86,7 +98,7 @@ public class MediaPlayer_Activity extends AppCompatActivity
 
 
 
-    static boolean isPlaying = false;
+    public static boolean isPlaying = false;
     MusicService musicService;
 
 
@@ -103,10 +115,15 @@ public class MediaPlayer_Activity extends AppCompatActivity
    public static int duration=2;
     public static String thumbnailURL, title, author, audioUrl;
 
-
+    int onetime=0;
+    
     MotionLayout motionLayout2;
 
+    ProgressBar progressBarPlayButton;
 
+    LoaderDialog loaderDialog = new LoaderDialog(MediaPlayer_Activity.this);
+
+   TextView speedText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +147,25 @@ public class MediaPlayer_Activity extends AppCompatActivity
         authorTextView = findViewById(R.id.AuthorTextView);
         songImageURL = findViewById(R.id.songImageMAINURL);
         motionLayout2 = findViewById(R.id.motionLayout_mediaPlayer);
+        speedText = findViewById(R.id.oneXSpeed);
+
+
+
+        Toast.makeText(this, "Preparing Media", Toast.LENGTH_SHORT).show();
+
+
+        //mediaPlayer
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                motionLayout2.transitionToEnd();
+            }
+        }, 0);
+
+
+
+
+
 
 
 
@@ -163,16 +199,13 @@ public class MediaPlayer_Activity extends AppCompatActivity
 
 currentTitle=title;
 
+
         prepareMedia();
 
 
-        //mediaPlayer
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                motionLayout2.transitionToEnd();
-            }
-        }, 250);
+
+
+
 
         loadSharedPrefData();
                         titleTextView.setText(title);
@@ -254,8 +287,97 @@ currentTitle=title;
         play.setImageResource(R.drawable.play_button_vector);
         playClicked();
 
-        }
+
+
+        simpleExoPlayer.addListener(new ExoPlayer.Listener() {
+
+            @Override
+            public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+
+
+                }
+
+
+
+
+        });
+
+    }
 //end of onCreate
+
+
+
+
+    public void speedboxOnPressed(View view){
+        loaderDialog.startLoaderDialog(MediaPlayer_Activity.this);
+    }
+    
+    public void oneXPressed(View view){
+
+
+        PlaybackParameters param = new PlaybackParameters(1f);
+        simpleExoPlayer.setPlaybackParameters(param);
+        speedText.setText("1X");
+        loaderDialog.dismissDialog();
+    }
+
+    public void onetwofiveXPressed(View view){
+        PlaybackParameters param = new PlaybackParameters(1.25f);
+        simpleExoPlayer.setPlaybackParameters(param);
+        speedText.setText("1.25X");
+        loaderDialog.dismissDialog();
+    }
+
+    public void onefiftyXPressed(View view){
+        PlaybackParameters param = new PlaybackParameters(1.5f);
+        simpleExoPlayer.setPlaybackParameters(param);
+        speedText.setText("1.5X");
+        loaderDialog.dismissDialog();
+    }
+
+    public void oneSevenFiveXPressed(View view){
+        PlaybackParameters param = new PlaybackParameters(1.75f);
+        simpleExoPlayer.setPlaybackParameters(param);
+        speedText.setText("1.75X");
+        loaderDialog.dismissDialog();
+    }
+    public void twoXPressed(View view){
+        PlaybackParameters param = new PlaybackParameters(2f);
+        simpleExoPlayer.setPlaybackParameters(param);
+        speedText.setText("2.0X");
+        loaderDialog.dismissDialog();
+    }
+    public void zeroEightyXPressed(View view){
+        PlaybackParameters param = new PlaybackParameters(0.8f);
+        simpleExoPlayer.setPlaybackParameters(param);
+        speedText.setText("0.8X");
+        loaderDialog.dismissDialog();
+    }
+    public void zeroSixtyXPressed(View view){
+        PlaybackParameters param = new PlaybackParameters(0.6f);
+        simpleExoPlayer.setPlaybackParameters(param);
+        speedText.setText("0.6X");
+        loaderDialog.dismissDialog();
+    }
+
+    public void zeroFortyXPressed(View view){
+        PlaybackParameters param = new PlaybackParameters(0.4f);
+        simpleExoPlayer.setPlaybackParameters(param);
+        speedText.setText("0.4X");
+        loaderDialog.dismissDialog();
+    }
+    public void zeroTwoXPressed(View view){
+        PlaybackParameters param = new PlaybackParameters(0.2f);
+        simpleExoPlayer.setPlaybackParameters(param);
+        speedText.setText("0.2X");
+        loaderDialog.dismissDialog();
+    }
+
+
+
+
+    
+
 
 
 //TODO image from url and new show notification
@@ -312,24 +434,24 @@ currentTitle=title;
 
         Intent prevIntent = new Intent(this, NotificationReceiver.class).setAction(ACTION_PREV);
         PendingIntent prevPendingIntent = PendingIntent.getBroadcast(this, 0, prevIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
         Intent playIntent = new Intent(this, NotificationReceiver.class).setAction(ACTION_PLAY);
         PendingIntent playPendingIntent = PendingIntent.getBroadcast(this, 0, playIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
         Intent nextIntent = new Intent(this, NotificationReceiver.class).setAction(ACTION_NEXT);
         PendingIntent nextPendingIntent = PendingIntent.getBroadcast(this, 0, nextIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
         //Todo ButtonIntent
         Intent forwardIntent = new Intent(this, NotificationReceiver.class).setAction(ACTION_FORWARD);
         PendingIntent forwardPendingIntent = PendingIntent.getBroadcast(this, 0, forwardIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
         Intent rewindIntent = new Intent(this, NotificationReceiver.class).setAction(ACTION_REWIND);
         PendingIntent rewindPendingIntent = PendingIntent.getBroadcast(this, 0, rewindIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
 
         Intent resultIntent = new Intent(this, NotificationReceiver.class).setAction(ACTION_CONTINUE);
         PendingIntent resultPendingIntent = PendingIntent.getBroadcast(this, 0, resultIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
 
 
 
@@ -343,7 +465,7 @@ currentTitle=title;
                 .setOngoing(true)
                 .setContentTitle(title)
                 .setContentText(author)
-                .setColor(getResources().getColor(R.color.blue_primary))
+                .setColor(getResources().getColor(R.color.neumorphism_background))
                // .addAction(android.R.drawable.arrow_down_float, "Previous", prevPendingIntent)
                 .addAction(R.drawable.ic_baseline_replay_30_24, "Rewind", rewindPendingIntent)
                 .addAction(playPauseBtn, "Play", playPendingIntent)
@@ -368,12 +490,12 @@ currentTitle=title;
 
     //Todo-preparing media
     public void prepareMedia() {
-        simpleExoPlayer = new SimpleExoPlayer.Builder(this).build();
+        isPlaying=true;
+        simpleExoPlayer = new SimpleExoPlayer.Builder(MediaPlayer_Activity.this).build();
         MediaItem mediaItem = MediaItem.fromUri(audioUrl);
         simpleExoPlayer.addMediaItem(mediaItem);
         simpleExoPlayer.prepare();
         simpleExoPlayer.seekTo(songPrevPosition);
-        isPlaying=true;
     }
 
 
@@ -386,15 +508,18 @@ currentTitle=title;
             updateSeekBar();
             long currentDuration = simpleExoPlayer.getCurrentPosition();
             textCurrentTime.setText(milliSecondsToTimer(currentDuration));
+
         }
     };
+
+
 
     private void updateSeekBar() {
         //      if(simpleExoPlayer.isPlaying()){
         playerSeekBar.setProgress((int) (((float) simpleExoPlayer.getCurrentPosition() / duration) * 100));
         handler.postDelayed(updater, 1000);
-
     }
+
 
     private String milliSecondsToTimer(long milliSeconds) {
         String timerString ;
@@ -465,6 +590,8 @@ currentTitle=title;
     @Override
     public void nextClicked() {
 
+
+
         long sTime = simpleExoPlayer.getCurrentPosition();
         long bTime = 360000; // time how much to skip
 
@@ -496,15 +623,16 @@ currentTitle=title;
     @Override
     public void playClicked() {
 
+
         if (!isPlaying) {
             isPlaying = true;
-
             play.setImageResource(R.drawable.pause_button_vector);
             simpleExoPlayer.play();
             updateSeekBar();
 
         } else {
             isPlaying = false;
+
             handler.removeCallbacks(updater);
             play.setImageResource(R.drawable.play_button_vector);
             simpleExoPlayer.pause();
@@ -609,6 +737,8 @@ currentTitle=title;
                 startActivityIfNeeded(openHome, 0);
             }
         }, 300);
+
+        Picasso.get().load(thumbnailURL).into(target);
     }
 
 
@@ -623,6 +753,8 @@ currentTitle=title;
                 startActivityIfNeeded(openHome, 0);
             }
         }, 300);
+
+        Picasso.get().load(thumbnailURL).into(target);
 
     }
 
@@ -643,5 +775,13 @@ currentTitle=title;
     protected void onRestart() {
         super.onRestart();
         motionLayout2.transitionToEnd();
+    }
+
+
+
+    private void showUpdateDialog() {
+        Dialog dialog;
+
+
     }
 }

@@ -3,15 +3,19 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+
+
+
 android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
+
 
     defaultConfig {
         applicationId "com.google.android.exoplayer.finalmusicapp"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 2
+        versionCode 3
         versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -52,8 +56,10 @@ dependencies {
     // Scalable size units
     implementation'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
-//    Neumorphism
+
+//Neumorphism
     implementation 'com.github.fornewid:neumorphism:0.3.0'
+
    // Rounded image view
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
@@ -67,3 +73,4 @@ dependencies {
     //ads
     implementation 'com.google.android.gms:play-services-ads:20.3.0'
 }
+

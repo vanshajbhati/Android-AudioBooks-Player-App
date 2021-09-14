@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+       <KeyFrameSet>
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            motion:layout_editor_absoluteY="708dp"
+            android:layout_height="120dp"
+            motion:layout_constraintStart_toStartOf="@id/guidelineOut1v"
+            motion:layout_constraintEnd_toEndOf="@id/guidelineOut2v"
+            android:layout_width="0dp"
+            android:id="@+id/neumorphImageView"
+            motion:layout_constraintTop_toBottomOf="@id/guidelineOut2H" />
+        <Constraint
+            android:id="@+id/neumorphCardView3"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            motion:layout_constraintTop_toTopOf="@id/guidelineOut2H"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/neumorphCardView3"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            motion:layout_constraintTop_toTopOf="@id/guidelineOut2H"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="@id/guidelineOut2H"
+            android:layout_width="wrap_content"
+            motion:layout_constraintStart_toStartOf="@id/guideline2v"
+            android:id="@+id/musicBar_title_textview" />
+        <Constraint
+            android:layout_height="65dp"
+            motion:layout_constraintTop_toTopOf="@id/guidelineOut2H"
+            android:layout_width="65dp"
+            motion:layout_constraintStart_toStartOf="@id/guideline4v"
+            android:id="@+id/musicBar_button_playPause" />
+        <Constraint
+            android:layout_height="60dp"
+            motion:layout_constraintTop_toTopOf="@id/guidelineOut2H"
+            android:layout_width="60dp"
+            motion:layout_constraintStart_toStartOf="@id/guideline3v"
+            android:id="@+id/musicBar_button_rewind" />
+        <Constraint
+            android:layout_height="60dp"
+            motion:layout_constraintTop_toTopOf="@id/guidelineOut2H"
+            android:layout_width="60dp"
+            motion:layout_constraintStart_toStartOf="@id/guideline5v"
+            android:id="@+id/musicBar_button_forward" />
+        <Constraint
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="@id/guideline5"
+            android:layout_width="match_parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/constraintLayout" />
+        <Constraint
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="@id/guidelineOut1H"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+    </ConstraintSet>
+</MotionScene>

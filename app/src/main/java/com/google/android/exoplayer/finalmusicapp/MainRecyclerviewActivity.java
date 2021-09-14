@@ -93,6 +93,10 @@ public class MainRecyclerviewActivity extends AppCompatActivity implements Actio
     private AdView adView;
     private FrameLayout frameLayout;
 
+    
+    String  versionUri;
+    
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,7 +152,7 @@ public class MainRecyclerviewActivity extends AppCompatActivity implements Actio
 
         Intent intentService = new Intent(MainRecyclerviewActivity.this, MusicService.class);
         bindService(intentService, MainRecyclerviewActivity.this, BIND_AUTO_CREATE);
-        
+
         int currentVersionCode;
         currentVersionCode = getCurrentVersionCode();
         Log.d("myApp", String.valueOf(currentVersionCode));
@@ -248,14 +252,16 @@ public class MainRecyclerviewActivity extends AppCompatActivity implements Actio
         @Override
         public void onClick(DialogInterface dialog, int which){
             try {
-                db.collection("versionUri").get()
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                db.collection("versionUri").document("VDx1ZMV9fgX59vHSVg2k").get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                 versionUri = documentSnapshot.getString("new_version_code");
+                                Toast.makeText(MainRecyclerviewActivity.this, "Please Download Latest Version", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(versionUri)));
                             }
                         });
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.apkpure.com/vidmate-downloader-hd-live-tv/com.nemo.vidmate/download?from=details")));
+
 
             } catch (Exception e){
                 Toast.makeText(MainRecyclerviewActivity.this, "update dialog update intent is wrong", Toast.LENGTH_SHORT).show();
