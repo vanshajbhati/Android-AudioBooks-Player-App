@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout_recyclerViewActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neumorphism_background"
+    app:layoutDescription="@xml/activity_main_recyclerview_scene"
+    tools:context=".Main">
+
+
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.90" />
+
+
+    <TextView
+        android:id="@+id/enterTheNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:text="Enter the Number"
+        android:textAlignment="center"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
+
+
+        app:layout_constraintBottom_toTopOf="@+id/neumorphCardView2"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineRS"
+        app:layout_constraintStart_toStartOf="@+id/guidelineBv"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.951" />
+
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView2"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        app:neumorph_shadowColorLight="#FFFFFF"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineRS"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/guidelineBv"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.799"
+        app:neumorph_backgroundColor="#F1EDED"
+
+        app:neumorph_shapeType="pressed">
+
+
+        <LinearLayout
+            android:id="@+id/llNumber"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+           >
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/ccp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ccpDialog_keyboardAutoPopup="false"
+                app:ccp_arrowSize="15sp"
+                app:ccp_autoFormatNumber="true"
+                app:ccp_showArrow="true"
+                app:ccp_showFlag="true"
+                app:ccp_showFullName="false"
+                app:ccp_showNameCode="false"
+                app:ccp_showPhoneCode="true"
+                app:ccp_textSize="15sp" />
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:background="@null"
+                android:textSize="@dimen/_18sdp"
+
+
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium_numbers"
+                android:hint="Enter"
+                android:inputType="number"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="366dp"
+        android:layout_height="261dp"
+        app:layout_constraintBottom_toTopOf="@+id/enterTheNumber"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/login_image"
+        tools:layout_editor_absoluteX="27dp" />
+
+
+   <FrameLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toStartOf="@+id/guidelineRS"
+       app:layout_constraintStart_toStartOf="@+id/guidelineBv"
+       app:layout_constraintTop_toBottomOf="@+id/neumorphCardView2"
+       >
+
+
+       <soup.neumorphism.NeumorphCardView xmlns:android="http://schemas.android.com/apk/res/android"
+           xmlns:card_view="http://schemas.android.com/tools"
+           android:id="@+id/confirm_cardView"
+           android:clickable="true"
+           android:foreground="?android:attr/selectableItemBackground"
+           android:layout_width="@dimen/_105sdp"
+           android:layout_height="80dp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toStartOf="@+id/guidelineRS"
+           app:layout_constraintStart_toStartOf="@+id/guidelineBv"
+           app:layout_constraintTop_toBottomOf="@+id/neumorphCardView2"
+           xmlns:cardview="http://schemas.android.com/apk/res-auto"
+           cardview:neumorph_backgroundColor="@color/neumorphism_background"
+           cardview:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+           cardview:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+           cardview:neumorph_shapeAppearance="@style/NeumorphismCardImageRecyclerViewActivity"
+           cardview:neumorph_shapeType="pressed">
+
+
+           <TextView
+               android:id="@+id/confirm_button"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:singleLine="false"
+               android:text="Confirm"
+               android:gravity="center"
+               android:layout_gravity="center"
+               android:textAlignment="center"
+               android:textColor="@color/primary_text"
+               android:textSize="@dimen/_15sdp"
+               android:textStyle="bold"
+
+
+               app:layout_constraintBottom_toTopOf="@+id/neumorphCardView2"
+               app:layout_constraintEnd_toEndOf="@+id/guidelineRS"
+               app:layout_constraintStart_toStartOf="@+id/guidelineBv"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintVertical_bias="0.951" />
+
+
+
+       </soup.neumorphism.NeumorphCardView>
+
+
+       <ProgressBar
+           android:id="@+id/progressbar_sending_otp"
+           android:layout_width="35dp"
+           android:layout_height="35dp"
+           android:layout_gravity="center"
+            android:visibility="gone"/>
+
+   </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

@@ -1,27 +1,19 @@
 package com.google.android.exoplayer.finalmusicapp;
 
+import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.currentTitle;
+import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.editor;
+import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.notificationManager;
+import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.mediaPlayer;
+import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.songPrevPosition;
+
 import android.app.Service;
 import android.content.Intent;
-
 import android.os.Binder;
 import android.os.IBinder;
-
-import android.util.Log;
+import android.os.PowerManager;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.audioUrl;
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.author;
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.currentTitle;
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.duration;
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.notificationManager;
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.simpleExoPlayer;
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.position;
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.editor;
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.songPrevPosition;
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.thumbnailURL;
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.title;
 
 
 public class MusicService extends Service {
@@ -56,6 +48,10 @@ public class MusicService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+        PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                "MyApp::MyWakelockTag");
+        wakeLock.acquire();
 
     String actionName = intent.getStringExtra("myActionName");
 
@@ -114,10 +110,10 @@ public class MusicService extends Service {
     public void onTaskRemoved(Intent rootIntent) {
             super.onTaskRemoved(rootIntent);
            notificationManager.cancelAll();
-           songPrevPosition=  (int)simpleExoPlayer.getCurrentPosition();
+           songPrevPosition=  (int)mediaPlayer.getCurrentPosition();
         editor.putInt(currentTitle, songPrevPosition);
         editor.apply();
-        simpleExoPlayer.release();
+        mediaPlayer.release();
         stopSelf();
     }
 

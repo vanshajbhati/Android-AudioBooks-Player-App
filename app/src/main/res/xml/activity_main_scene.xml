@@ -16,27 +16,16 @@
 
         <Constraint
             android:layout_height="@dimen/_44sdp"
-            motion:layout_constraintStart_toEndOf="@+id/forwardButtonView"
             motion:layout_constraintBottom_toBottomOf="@id/guidelineExtremeBottom"
-            motion:layout_constraintHorizontal_bias="0.666"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="@dimen/_44sdp"
             android:id="@+id/nextButtonView" />
         <Constraint
             android:layout_height="@dimen/_44sdp"
-            motion:layout_constraintEnd_toStartOf="@+id/rewindButtonView"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintBottom_toBottomOf="@id/guidelineExtremeBottom"
-            motion:layout_constraintHorizontal_bias="0.4"
             android:layout_width="@dimen/_44sdp"
             android:id="@+id/previousButtonView" />
-        <Constraint
-            android:layout_height="wrap_content"
-            motion:layout_constraintBottom_toTopOf="@id/guideline5"
-            android:layout_width="360dp"
-            motion:layout_constraintTop_toBottomOf="@id/AuthorTextView"
-            motion:layout_constraintStart_toStartOf="@id/guidelineExtremeOutLeft"
-            android:id="@+id/cardSeekBar" />
         <Constraint
             android:layout_height="wrap_content"
             motion:layout_editor_absoluteX="343dp"
@@ -60,17 +49,31 @@
             motion:layout_constraintStart_toStartOf="@id/guidelineExtremeOutLeft" />
         <Constraint
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toTopOf="@id/guideline3"
-            motion:layout_constraintBottom_toTopOf="@id/AuthorTextView"
             android:layout_width="wrap_content"
-            motion:layout_constraintStart_toStartOf="@id/guidelineExtremeOutLeft"
-            android:id="@+id/titleSongs" />
-        <Constraint
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/titleSongs"
             motion:layout_constraintStart_toStartOf="@id/guidelineExtremeOutLeft"
             android:id="@+id/AuthorTextView" />
+        <Constraint
+            android:layout_height="@dimen/_54sdp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="@dimen/_54sdp"
+            android:id="@+id/forwardButtonView" />
+        <Constraint
+            android:layout_height="@dimen/_54sdp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="@dimen/_54sdp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/rewindButtonView" />
+        <Constraint
+            motion:layout_editor_absoluteY="356dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/speedCardViewCenter" />
+        <Constraint
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/constraintLayout" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">

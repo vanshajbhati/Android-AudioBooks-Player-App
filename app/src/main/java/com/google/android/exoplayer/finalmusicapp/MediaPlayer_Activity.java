@@ -1,32 +1,33 @@
 package com.google.android.exoplayer.finalmusicapp;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.motion.widget.MotionLayout;
-import androidx.core.app.NotificationCompat;
-import androidx.core.widget.ContentLoadingProgressBar;
+import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_CONTINUE;
+import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_FORWARD;
+import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_NEXT;
+import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_PLAY;
+import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_PREV;
+import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_REWIND;
+import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.CHANNEL_ID_2;
 
 import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.session.MediaSession;
-import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-
-
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,41 +37,22 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.core.app.NotificationCompat;
 
-import com.flurry.android.FlurryAgent;
-import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
-
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import java.util.concurrent.ExecutionException;
-
-import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_NEXT;
-import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_PLAY;
-import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_PREV;
-import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_FORWARD;
-import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_REWIND;
-
-import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.CHANNEL_ID_2;
-import static com.google.android.exoplayer.finalmusicapp.ApplicationClass.ACTION_CONTINUE;
-import static com.google.android.exoplayer.finalmusicapp.MainRecyclerviewActivity.motionLayout;
-import static com.google.android.exoplayer.finalmusicapp.MainRecyclerviewActivity.prevPosition;
 
 public class MediaPlayer_Activity extends AppCompatActivity
         implements ActionPlaying, ServiceConnection , Player.EventListener{
@@ -106,7 +88,7 @@ public class MediaPlayer_Activity extends AppCompatActivity
     private TextView textCurrentTime, textTotalDuration, authorTextView;
     private SeekBar playerSeekBar;
     private Handler handler = new Handler();
-    public static SimpleExoPlayer simpleExoPlayer;
+    public static MediaPlayer mediaPlayer;
 
     //TODO important variables
 
@@ -148,6 +130,12 @@ public class MediaPlayer_Activity extends AppCompatActivity
         songImageURL = findViewById(R.id.songImageMAINURL);
         motionLayout2 = findViewById(R.id.motionLayout_mediaPlayer);
         speedText = findViewById(R.id.oneXSpeed);
+
+
+        PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+        PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                "MyApp::MyWakelockTag");
+        wakeLock.acquire();
 
 
 
@@ -192,22 +180,30 @@ public class MediaPlayer_Activity extends AppCompatActivity
                }
 
 
-                 Intent prevPositionIntent = new Intent(this, MainRecyclerviewActivity.class);
+                 Intent prevPositionIntent = new Intent(this, Main.class);
 
                  prevPositionIntent.putExtra("prevPosition",position);
 
 
-currentTitle=title;
+           currentTitle=title;
 
 
-        prepareMedia();
-
-
-
-
-
+//TODO load previous position of the book
 
         loadSharedPrefData();
+
+
+//TODO starting media
+        mediaPlayer = new MediaPlayer();
+        thread.start();
+
+
+
+
+
+
+
+
                         titleTextView.setText(title);
 
                         authorTextView.setText(author);
@@ -234,8 +230,8 @@ currentTitle=title;
                             public boolean onTouch(View view, MotionEvent motionEvent) {
                                 SeekBar seekBar = (SeekBar) view;
                                 int playPosition = (int) (duration / 100) * seekBar.getProgress();
-                                simpleExoPlayer.seekTo(playPosition);
-                                textCurrentTime.setText(milliSecondsToTimer(simpleExoPlayer.getCurrentPosition()));
+                                mediaPlayer.seekTo(playPosition);
+                                textCurrentTime.setText(milliSecondsToTimer(mediaPlayer.getCurrentPosition()));
                                 return false;
                             }
                         });
@@ -285,22 +281,11 @@ currentTitle=title;
         isPlaying = false;
         handler.removeCallbacks(updater);
         play.setImageResource(R.drawable.play_button_vector);
-        playClicked();
-
-
-
-        simpleExoPlayer.addListener(new ExoPlayer.Listener() {
-
-            @Override
-            public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-
-
-                }
+     //   playClicked();
 
 
 
 
-        });
 
     }
 //end of onCreate
@@ -315,60 +300,83 @@ currentTitle=title;
     public void oneXPressed(View view){
 
 
-        PlaybackParameters param = new PlaybackParameters(1f);
-        simpleExoPlayer.setPlaybackParameters(param);
+        float speed = 1f;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(speed));
+        }
         speedText.setText("1X");
         loaderDialog.dismissDialog();
     }
 
     public void onetwofiveXPressed(View view){
-        PlaybackParameters param = new PlaybackParameters(1.25f);
-        simpleExoPlayer.setPlaybackParameters(param);
+        float speed = 1.2f;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(speed));
+        }
         speedText.setText("1.25X");
         loaderDialog.dismissDialog();
     }
 
     public void onefiftyXPressed(View view){
-        PlaybackParameters param = new PlaybackParameters(1.5f);
-        simpleExoPlayer.setPlaybackParameters(param);
+        float speed = 1.5f;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(speed));
+        }
+
         speedText.setText("1.5X");
         loaderDialog.dismissDialog();
     }
 
     public void oneSevenFiveXPressed(View view){
-        PlaybackParameters param = new PlaybackParameters(1.75f);
-        simpleExoPlayer.setPlaybackParameters(param);
+        float speed = 1.75f;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(speed));
+        }
+
         speedText.setText("1.75X");
         loaderDialog.dismissDialog();
     }
     public void twoXPressed(View view){
-        PlaybackParameters param = new PlaybackParameters(2f);
-        simpleExoPlayer.setPlaybackParameters(param);
+        float speed = 2f;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(speed));
+        }
+
         speedText.setText("2.0X");
         loaderDialog.dismissDialog();
     }
     public void zeroEightyXPressed(View view){
-        PlaybackParameters param = new PlaybackParameters(0.8f);
-        simpleExoPlayer.setPlaybackParameters(param);
+        float speed = 0.8f;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(speed));
+        }
         speedText.setText("0.8X");
         loaderDialog.dismissDialog();
     }
     public void zeroSixtyXPressed(View view){
-        PlaybackParameters param = new PlaybackParameters(0.6f);
-        simpleExoPlayer.setPlaybackParameters(param);
+        float speed = 0.6f;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(speed));
+        }
+
         speedText.setText("0.6X");
         loaderDialog.dismissDialog();
     }
 
     public void zeroFortyXPressed(View view){
-        PlaybackParameters param = new PlaybackParameters(0.4f);
-        simpleExoPlayer.setPlaybackParameters(param);
+        float speed = 0.4f;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(speed));
+        }
+
         speedText.setText("0.4X");
         loaderDialog.dismissDialog();
     }
     public void zeroTwoXPressed(View view){
-        PlaybackParameters param = new PlaybackParameters(0.2f);
-        simpleExoPlayer.setPlaybackParameters(param);
+        float speed = 0.2f;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(speed));
+        }
         speedText.setText("0.2X");
         loaderDialog.dismissDialog();
     }
@@ -487,16 +495,55 @@ currentTitle=title;
 
     }
 
+    Thread thread = new Thread(new Runnable() {
+        @Override
+        public void run() {
 
+
+            try {
+                Log.d("DataSorce", audioUrl);
+                try {
+                    //MediaItem mediaItem = MediaItem.fromUri(audioUrl);
+                    mediaPlayer.setDataSource(audioUrl);
+                    Log.d("DataSorce", "no error");
+                } catch (Exception e) {
+                    Log.e("DataSorce", e.toString());
+                }
+
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+                mediaPlayer.prepareAsync();
+                // mediaPlayer.setWakeMode(this,);
+
+                mediaPlayer.seekTo(songPrevPosition);
+                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mp) {
+
+                        mediaPlayer.start();
+                        isPlaying = true;
+                        //play_button.setText("Pause");
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    });
     //Todo-preparing media
-    public void prepareMedia() {
-        isPlaying=true;
-        simpleExoPlayer = new SimpleExoPlayer.Builder(MediaPlayer_Activity.this).build();
-        MediaItem mediaItem = MediaItem.fromUri(audioUrl);
-        simpleExoPlayer.addMediaItem(mediaItem);
-        simpleExoPlayer.prepare();
-        simpleExoPlayer.seekTo(songPrevPosition);
-    }
+//    public void prepareMedia() {
+//        isPlaying=true;
+//        simpleExoPlayer = new SimpleExoPlayer.Builder(MediaPlayer_Activity.this).build();
+//        simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
+//        simpleExoPlayer.setHandleWakeLock(true);
+//        MediaItem mediaItem = MediaItem.fromUri(audioUrl);
+//        simpleExoPlayer.addMediaItem(mediaItem);
+//        simpleExoPlayer.prepare();
+//        simpleExoPlayer.seekTo(songPrevPosition);
+//    }
 
 
 
@@ -506,7 +553,7 @@ currentTitle=title;
         @Override
         public void run() {
             updateSeekBar();
-            long currentDuration = simpleExoPlayer.getCurrentPosition();
+            long currentDuration = mediaPlayer.getCurrentPosition();
             textCurrentTime.setText(milliSecondsToTimer(currentDuration));
 
         }
@@ -516,7 +563,7 @@ currentTitle=title;
 
     private void updateSeekBar() {
         //      if(simpleExoPlayer.isPlaying()){
-        playerSeekBar.setProgress((int) (((float) simpleExoPlayer.getCurrentPosition() / duration) * 100));
+        playerSeekBar.setProgress((int) (((float) mediaPlayer.getCurrentPosition() / duration) * 100));
         handler.postDelayed(updater, 1000);
     }
 
@@ -592,12 +639,12 @@ currentTitle=title;
 
 
 
-        long sTime = simpleExoPlayer.getCurrentPosition();
-        long bTime = 360000; // time how much to skip
+        int sTime = mediaPlayer.getCurrentPosition();
+        int bTime = 360000; // time how much to skip
 
         if ((sTime + bTime) < duration) {
             sTime = sTime + bTime;
-            simpleExoPlayer.seekTo(sTime);
+            mediaPlayer.seekTo(sTime);
         } else {
             Toast.makeText(getApplicationContext(), "Cannot jump forward 5 minute", Toast.LENGTH_SHORT).show();
         }
@@ -607,12 +654,12 @@ currentTitle=title;
     @Override
     public void prevClicked() {
 
-        long sTime = simpleExoPlayer.getCurrentPosition();
-        long bTime = 360000; // time how much to skip
+        int sTime = mediaPlayer.getCurrentPosition();
+        int bTime = 360000; // time how much to skip
 
         if ((sTime - bTime) > 0) {
             sTime = sTime - bTime;
-            simpleExoPlayer.seekTo(sTime);
+            mediaPlayer.seekTo(sTime);
         } else {
             Toast.makeText(getApplicationContext(), "Cannot jump backward 5 minute", Toast.LENGTH_SHORT).show();
         }
@@ -627,7 +674,8 @@ currentTitle=title;
         if (!isPlaying) {
             isPlaying = true;
             play.setImageResource(R.drawable.pause_button_vector);
-            simpleExoPlayer.play();
+           mediaPlayer.start();
+           //simpleexoplayer.play(); this is for continue
             updateSeekBar();
 
         } else {
@@ -635,7 +683,7 @@ currentTitle=title;
 
             handler.removeCallbacks(updater);
             play.setImageResource(R.drawable.play_button_vector);
-            simpleExoPlayer.pause();
+            mediaPlayer.pause();
         }
         Picasso.get().load(thumbnailURL).into(target);
 
@@ -645,12 +693,12 @@ currentTitle=title;
 
     public void forwardClicked() {
 
-        long sTime = simpleExoPlayer.getCurrentPosition();
-        long bTime = 15000; // time how much to skip
+        int sTime = mediaPlayer.getCurrentPosition();
+        int bTime = 15000; // time how much to skip
 
         if ((sTime + bTime) < duration) {
             sTime = sTime + bTime;
-            simpleExoPlayer.seekTo(sTime);
+            mediaPlayer.seekTo(sTime);
         } else {
             Toast.makeText(getApplicationContext(), "Cannot jump forward 15 seconds", Toast.LENGTH_SHORT).show();
         }
@@ -659,12 +707,12 @@ currentTitle=title;
     }
 
     public void rewindClicked() {
-        long sTime = simpleExoPlayer.getCurrentPosition();
-        long bTime = 15000; // time how much to skip
+        int sTime = mediaPlayer.getCurrentPosition();
+        int bTime = 15000; // time how much to skip
 
         if ((sTime - bTime) > 0) {
             sTime = sTime - bTime;
-            simpleExoPlayer.seekTo(sTime);
+            mediaPlayer.seekTo(sTime);
         } else {
             Toast.makeText(getApplicationContext(), "Cannot jump backward 15 seconds", Toast.LENGTH_SHORT).show();
         }
@@ -689,7 +737,7 @@ currentTitle=title;
 
     public void saveData(){
 
-        editor.putInt(currentTitle, (int)simpleExoPlayer.getCurrentPosition());
+        editor.putInt(currentTitle, (int)mediaPlayer.getCurrentPosition());
         editor.apply();
         editor.putString("prevThumbnailUrl", thumbnailURL);
         editor.apply();
@@ -732,7 +780,7 @@ currentTitle=title;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent openHome = new Intent(MediaPlayer_Activity.this, MainRecyclerviewActivity.class);
+                Intent openHome = new Intent(MediaPlayer_Activity.this, Main.class);
                 openHome.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivityIfNeeded(openHome, 0);
             }
@@ -748,7 +796,7 @@ currentTitle=title;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent openHome = new Intent(MediaPlayer_Activity.this, MainRecyclerviewActivity.class);
+                Intent openHome = new Intent(MediaPlayer_Activity.this, Main.class);
                 openHome.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivityIfNeeded(openHome, 0);
             }
@@ -768,6 +816,7 @@ currentTitle=title;
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        saveData();
         Log.e(String.valueOf(MediaPlayer_Activity.class), "on destroy");
     }
 

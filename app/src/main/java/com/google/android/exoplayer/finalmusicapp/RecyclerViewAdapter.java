@@ -1,5 +1,8 @@
 package com.google.android.exoplayer.finalmusicapp;
 
+import static com.google.android.exoplayer.finalmusicapp.Main.motionLayout;
+import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.mediaPlayer;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -10,12 +13,8 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -23,9 +22,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import soup.neumorphism.NeumorphCardView;
-
-import static com.google.android.exoplayer.finalmusicapp.MainRecyclerviewActivity.motionLayout;
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.simpleExoPlayer;
 
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements Filterable {
@@ -54,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder( @Nullable MyViewHolder holder, int position   ){
+    public void onBindViewHolder( @Nullable MyViewHolder holder, int position ){
      holder.book_title.setText(mData.get(position).getTitle() );
      holder.book_arthur.setText(mData.get(position).getSinger());
 
@@ -86,12 +82,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                intent.putExtra("duration", duration );
                intent.putExtra("audioUrl", audioUrl);
 
-               if(simpleExoPlayer !=null){
-               if(simpleExoPlayer.isPlaying()){
-                   simpleExoPlayer.release();
+               if(mediaPlayer !=null){
+               if(mediaPlayer.isPlaying()){
+                   mediaPlayer.release();
 
                }else{
-                   simpleExoPlayer.release();
+                  mediaPlayer.release();
                }
 
                }

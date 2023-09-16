@@ -3,10 +3,6 @@ package com.google.android.exoplayer.finalmusicapp;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import static com.google.android.exoplayer.finalmusicapp.MediaPlayer_Activity.simpleExoPlayer;
 
 public class NotificationReceiver extends BroadcastReceiver {
     public static final String ACTION_NEXT = "NEXT";
@@ -15,6 +11,8 @@ public class NotificationReceiver extends BroadcastReceiver {
     public static final String ACTION_FORWARD = "FORWARD";
     public static final String ACTION_REWIND = "REWIND";
     public static final String ACTION_CONTINUE = "CONTINUE";
+
+
 
 
     @Override
@@ -53,6 +51,4 @@ public class NotificationReceiver extends BroadcastReceiver {
         }
 
     }
-
-
 }

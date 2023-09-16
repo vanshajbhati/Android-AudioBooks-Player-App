@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/forest_illustration"
     app:layoutDescription="@xml/activity_main_recyclerview_scene"
-    tools:context=".MainRecyclerviewActivity">
+    tools:context=".Main">
 
 
     <androidx.constraintlayout.widget.Guideline

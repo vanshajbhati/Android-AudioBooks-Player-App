@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.google.android.exoplayer.finalmusicapp" >
+    package="com.google.android.exoplayer.finalmusicapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -11,32 +11,38 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:screenOrientation="portrait"
+        android:supportsRtl="true"
         android:theme="@style/Theme.FinalMusicApp"
-        android:usesCleartextTraffic="true" >
-        <activity android:name=".SupportingActivity" >
-        </activity>
-        <activity android:name=".chaptersActivity" />
-        <activity android:name=".MediaPlayer_Activity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.FinalMusicApp"/>
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainRecyclerviewActivity"
-            android:exported="true"
-            android:theme="@style/Theme.FinalMusicApp"
+            android:name=".userAuth.OtpAuth"
+            android:exported="false" />
+        <activity
+            android:name=".userAuth.LoginActivity"
+            android:exported="true"></activity>
+        <activity android:name=".SupportingActivity" />
+        <activity android:name=".chaptersActivity" />
+        <activity
+            android:name=".MediaPlayer_Activity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"
-            >
+            android:theme="@style/Theme.FinalMusicApp" />
+        <activity
+            android:name=".Main"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FinalMusicApp"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".newFiles.SplashScreen"
-            android:theme="@style/SplashTheme"
-            android:exported="true">
+        <activity
+            android:name=".newFiles.SplashScreen"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,7 +57,7 @@
         <receiver
             android:name=".NotificationReceiver"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="NEXT" />
                 <action android:name="PREVIOUS" />
@@ -64,13 +70,10 @@
 
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-
-                <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
-                <meta-data
-                    android:name="com.google.android.gms.ads.APPLICATION_ID"
-                    android:value="ca-app-pub-3940256099942544~3347511713"/>
-
+            android:resource="@array/preloaded_fonts" /> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
     </application>
 
 </manifest>

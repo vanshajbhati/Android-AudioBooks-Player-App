@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout_recyclerViewActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neumorphism_background"
+    app:layoutDescription="@xml/activity_main_recyclerview_scene"
+    android:orientation="vertical"
+    tools:context=".Main">
+
+
+
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/imageView"
+        android:layout_width="366dp"
+        android:layout_height="261dp"
+        app:layout_constraintBottom_toTopOf="@id/pinView"
+
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/login_image" />
+
+
+
+    <TextView
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:text="Verify OTP"
+        android:textAlignment="center"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
+
+
+        app:layout_constraintBottom_toTopOf="@+id/pinView"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineRS"
+        app:layout_constraintStart_toStartOf="@+id/guidelineBv"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.951" />
+    <TextView
+        android:layout_gravity="center"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:text="Please Enter the otp sent to you on "
+        android:textAlignment="center"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_10sdp"
+        />
+    <TextView
+        android:id="@+id/showNumber"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_10sdp"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:id="@+id/pinView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineRS"
+
+        app:layout_constraintStart_toStartOf="@id/guidelineBv"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintVertical_bias="0.799"
+        >
+
+
+        <soup.neumorphism.NeumorphCardView
+
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            app:layout_constraintStart_toStartOf="pa"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+
+
+            app:neumorph_backgroundColor="#F1EDED"
+
+
+            app:neumorph_shadowColorLight="#FFFFFF"
+
+            app:neumorph_shapeAppearance="@style/NeumorphismCardImageRecyclerViewActivity"
+            app:neumorph_shapeType="pressed"
+
+            >
+
+
+            <EditText
+                android:id="@+id/inputotp1"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="4dp"
+
+                android:background="@null"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium_numbers"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:hint="-"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold"
+                tools:ignore="LabelFor" />
+
+
+        </soup.neumorphism.NeumorphCardView>
+
+        <soup.neumorphism.NeumorphCardView
+
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRS"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guidelineBv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:neumorph_backgroundColor="#F1EDED"
+
+            app:neumorph_shadowColorLight="#FFFFFF"
+
+            app:neumorph_shapeAppearance="@style/NeumorphismCardImageRecyclerViewActivity"
+            app:neumorph_shapeType="pressed"
+
+            >
+
+
+            <EditText
+                android:id="@+id/inputotp2"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="4dp"
+
+                android:background="@null"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium_numbers"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:hint="-"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold"
+                tools:ignore="LabelFor" />
+
+
+        </soup.neumorphism.NeumorphCardView>
+        <soup.neumorphism.NeumorphCardView
+
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            app:neumorph_shadowColorLight="#FFFFFF"
+
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRS"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guidelineBv"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:neumorph_backgroundColor="#F1EDED"
+
+            xmlns:cardview="http://schemas.android.com/apk/res-auto"
+            cardview:neumorph_shapeAppearance="@style/NeumorphismCardImageRecyclerViewActivity"
+            cardview:neumorph_shapeType="pressed"
+
+            >
+
+
+
+
+
+
+            <EditText
+                android:id="@+id/inputotp3"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:foregroundGravity="center"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="4dp"
+
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:maxLength="1"
+                android:textStyle="bold"
+                tools:ignore="LabelFor"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:background="@null"
+                android:textSize="@dimen/_14sdp"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium_numbers"
+                android:hint="-"
+                android:inputType="number"
+                android:textColor="@color/black" />
+
+
+
+
+        </soup.neumorphism.NeumorphCardView>
+        <soup.neumorphism.NeumorphCardView
+
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            app:neumorph_shadowColorLight="#FFFFFF"
+
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRS"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guidelineBv"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:neumorph_backgroundColor="#F1EDED"
+
+            xmlns:cardview="http://schemas.android.com/apk/res-auto"
+            cardview:neumorph_shapeAppearance="@style/NeumorphismCardImageRecyclerViewActivity"
+            cardview:neumorph_shapeType="pressed"
+
+            >
+
+
+
+
+
+
+            <EditText
+                android:id="@+id/inputotp4"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:foregroundGravity="center"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="4dp"
+
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:maxLength="1"
+                android:textStyle="bold"
+                tools:ignore="LabelFor"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:background="@null"
+                android:textSize="@dimen/_14sdp"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium_numbers"
+                android:hint="-"
+                android:inputType="number"
+                android:textColor="@color/black" />
+
+
+
+
+        </soup.neumorphism.NeumorphCardView>
+        <soup.neumorphism.NeumorphCardView
+
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            app:neumorph_shadowColorLight="#FFFFFF"
+
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRS"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guidelineBv"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:neumorph_backgroundColor="#F1EDED"
+
+            xmlns:cardview="http://schemas.android.com/apk/res-auto"
+            cardview:neumorph_shapeAppearance="@style/NeumorphismCardImageRecyclerViewActivity"
+            cardview:neumorph_shapeType="pressed"
+
+            >
+
+
+
+
+
+
+            <EditText
+                android:id="@+id/inputotp5"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:foregroundGravity="center"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="4dp"
+
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:maxLength="1"
+                android:textStyle="bold"
+                tools:ignore="LabelFor"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:background="@null"
+                android:textSize="@dimen/_14sdp"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium_numbers"
+                android:hint="-"
+                android:inputType="number"
+                android:textColor="@color/black" />
+
+
+
+
+        </soup.neumorphism.NeumorphCardView>
+        <soup.neumorphism.NeumorphCardView
+
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            app:neumorph_shadowColorLight="#FFFFFF"
+
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRS"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guidelineBv"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:neumorph_backgroundColor="#F1EDED"
+
+            xmlns:cardview="http://schemas.android.com/apk/res-auto"
+            cardview:neumorph_shapeAppearance="@style/NeumorphismCardImageRecyclerViewActivity"
+            cardview:neumorph_shapeType="pressed"
+
+            >
+
+
+
+
+
+
+            <EditText
+                android:id="@+id/inputotp6"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:foregroundGravity="center"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="4dp"
+
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:maxLength="1"
+                android:textStyle="bold"
+                tools:ignore="LabelFor"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:background="@null"
+                android:textSize="@dimen/_14sdp"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium_numbers"
+                android:hint="-"
+                android:inputType="number"
+                android:textColor="@color/black" />
+
+
+
+
+        </soup.neumorphism.NeumorphCardView>
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:id="@+id/resend_otp_LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:orientation="horizontal"
+
+        app:layout_constraintTop_toBottomOf="@id/pinView">
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Didn\'t receive the otp?"
+        android:textColor="@color/primary"
+
+         android:textSize="14sp"
+           />
+    <TextView
+        android:id="@+id/textresendotp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="RESEND OTP AGAIN"
+    android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+    android:textColor="@color/primary_text"
+    android:textSize="15sp"
+    android:textStyle="bold"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        >
+
+
+        <soup.neumorphism.NeumorphCardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/tools"
+            android:id="@+id/confirm_cardView"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_width="@dimen/_105sdp"
+            android:layout_height="80dp"
+            xmlns:cardview="http://schemas.android.com/apk/res-auto"
+            cardview:neumorph_backgroundColor="@color/neumorphism_background"
+            cardview:neumorph_shadowColorLight="@color/neumorphism_light_shadow"
+            cardview:neumorph_shadowColorDark="@color/neumorphism_dark_shadow"
+            cardview:neumorph_shapeAppearance="@style/NeumorphismCardImageRecyclerViewActivity"
+            cardview:neumorph_shapeType="pressed">
+
+
+            <TextView
+                android:id="@+id/confirm_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="false"
+                android:text="Confirm"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+
+
+                app:layout_constraintBottom_toTopOf="@+id/neumorphCardView2"
+                app:layout_constraintEnd_toEndOf="@+id/guidelineRS"
+                app:layout_constraintStart_toStartOf="@+id/guidelineBv"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.951" />
+
+
+
+        </soup.neumorphism.NeumorphCardView>
+
+
+        <ProgressBar
+            android:id="@+id/progressbar_verify_otp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
